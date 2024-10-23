@@ -14,6 +14,7 @@ _Gatekeeper will block virtualbox from installing. All you have to do is go into
     - Vagrant Plugin - `vagrant plugin install vagrant-guest_ansible`
 - [Install the Latest Version of Virtualbox](https://www.virtualbox.org/wiki/Downloads) (`brew cask install VirtualBox`)
     - Virtual Box Extension Pack (`brew cask install virtualbox-extension-pack`)
+    - NOTE: so far box only supports virtualbox 7.0, it will fail if you have 7.1. Remember to install 7.0 extensions.
 
 ##### Once the above software is installed. Do the following if you're running the environment on Mac:
 1. Create a separate `~/bin` directory and `cd` to it.  (The directory doesn't have to be ~/bin, it can be anything you want.)
@@ -142,8 +143,5 @@ If you're having problems with the environment, please submit an issue by going 
 
 ## Known Issues:
 
-Running the 'vagrant up' environment build will fail If HyperV is installed on the Windows VirtualBox host.
-Error is usually "VT-x is not available. (VERR_VMX_NO_VMX)" or similar, when the script attempts to boot the first VM.
+Running the 'vagrant up' environment build will fail If HyperV is installed on the Windows VirtualBox host. FIX: add "--provider virtualbox" to command, you will not need to uninstall hyperv.
 
-Resolution seems to be either remove HyperV, or preventing its hypervisor from starting with the command:
-bcdedit /set hypervisorlaunchtype off, followed by a reboot.
